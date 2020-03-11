@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import logging
 from datetime import datetime
-from selectors.unlabeled_selector import unlabeled_selector
+from point_selectors.unlabeled_selector import unlabeled_selector
 from score_functions.search_expected_utility import search_expected_utility
 from models.knn_model import knn_model_prob, knn_search
 from query_strategies.argmax import argmax
