@@ -140,7 +140,7 @@ train_df = data_df.iloc[
             [((positive_labels['x']-0.5).pow(2)+(positive_labels['y']-0.5).pow(2)).idxmin()]]
 
 for query in range(num_queries):
-    print("*** query: ",query, " ***")
+    logging.info("*** query: {}/{} *** {}".format(query, num_queries-1, datetime.now()))
 
     if visual:
         plt.scatter(data_df['x'], data_df['y'], s=20, color=df, alpha=0.7, marker='o')
