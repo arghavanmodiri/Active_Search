@@ -52,48 +52,27 @@ def main():
         weights.iloc[i,neighbours.iloc[i].tolist()] = similarities.iloc[i].tolist()
 
     pos_count_greedy = []
-    pos_count_2step = []
-    pos_count_ens = []
-    pos_count_mf_ens = []
     first_train_point = []
-    for idx in range(repetition):
+    for idx in range(positive_labels_counts):
         train_df = positive_labels.sample()
         positive_labels.drop(train_df.index, inplace=True)
         logging.info("-------------------------------")
         logging.info(train_df)
         logging.info("-------------------------------")
         first_train_point.append(train_df.index.tolist()[0])
-        logging.info("*************** MF ENS ***************")
-        #logging.info(train_df)
-        pos_count_mf_ens.append(mfEns(data_df, train_df, weights, alpha, visual, num_queries, cost1, cost2, p1, p2))
-        #logging.info("*************** 2-Step ***************")
-        #logging.info(train_df)
-        #pos_count_2step.append(twoStep(data_df, train_df, weights, alpha, visual, num_queries))
+
         logging.info("*************** Greedy ***************")
-        #logging.info(train_df)
         pos_count_greedy.append(greedy(data_df, train_df, weights, alpha, visual, num_queries))
-        logging.info("***************  ENS   ***************")
-        #logging.info(train_df)
-        pos_count_ens.append(ens(data_df, train_df, weights, alpha, visual, num_queries))
+
         logging.info("**********************************************")
-        logging.info("first_train_point at iteration{}: {}".format(idx,
+        logging.info("first_train_point at iteration {}: {}".format(idx,
             first_train_point[idx]))
-        logging.info("pos_count_greedy at iteration{}: {}".format(idx,
+        logging.info("pos_count_greedy at iteration {}: {}".format(idx,
             pos_count_greedy[idx]))
-        #logging.info("pos_count_2step at iteration{}: {}".format(idx,
-        #    pos_count_2step[idx]))
-        logging.info("pos_count_ens at iteration{}: {}".format(idx,
-            pos_count_ens[idx]))
-        logging.info("pos_count_mf_ens at iteration{}: {}".format(idx,
-            pos_count_mf_ens[idx]))
         logging.info("**********************************************")
 
     logging.info("first_train_point : {}".format(first_train_point))
     logging.info("pos_count_greedy : {}".format(pos_count_greedy))
-    #logging.info("pos_count_2step : {}".format(pos_count_2step))
-    logging.info("pos_count_ens : {}".format(pos_count_ens))
-    logging.info("pos_count_mf_ens : {}".format(pos_count_mf_ens))
-    
 
 
 
