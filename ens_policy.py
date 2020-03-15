@@ -49,6 +49,7 @@ def ens(data_df, train_df, weights, alpha, visual, num_queries):
         # **************ENS policy **************
         scores = search_expected_utility(train_df['labels'], probs)
         budget_left = num_queries - train_df.shape[0]
+        logging.info("before for {}".format(datetime.now()))
         for point in test_idx:
             temp = 0
             for Y_x in [0, 1]:
@@ -64,6 +65,7 @@ def ens(data_df, train_df, weights, alpha, visual, num_queries):
                 temp += p_y_x * next_probs.nlargest(min(budget_left-1, len(test_fake_idx))).sum()
             scores.loc[point] += temp
 
+        logging.info("after for {}".format(datetime.now()))
         selected_point_idx = argmax(scores)
 
         #Ask Oracle

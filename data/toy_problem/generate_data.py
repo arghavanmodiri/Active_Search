@@ -30,7 +30,7 @@ def generate_data(num_points, random_seed = None, save_to_file = False):
     if save_to_file:
         data_df = pd.DataFrame(points, columns=['x','y'])
         data_df["labels"] = labels
-        data_df.to_csv("toy_example_data_500.csv")
+        data_df.to_csv("toy_example_data_{}.csv".format(num_points))
 
     return [points, labels]
 
@@ -41,4 +41,4 @@ def generate_data(num_points, random_seed = None, save_to_file = False):
 def to_int(x):
     return np.int(x)
 
-generate_data(500,20,True)
+generate_data(10000,20,True)
