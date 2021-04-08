@@ -21,7 +21,7 @@ logging.basicConfig(format='%(message)s')
 logging.info("{}".format(datetime.now()))
 
  #loading Data: has x,y,labels
-data_df = pd.read_csv("./data/toy_problem/toy_example_data_10000.csv",index_col=0)
+data_df = pd.read_csv("./data/toy_problem/toy_example_data_500.csv",index_col=0)
 
 def main():
     num_queries = 38
